@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset= "UTF-8"/>
+        <meta name= "viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
+
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+        </nav>
+
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="card border-dark" style="width: 100%;">
+                                <div class="card-header">Search Cities</div>
+                                <div class="card-body text-dark">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Enter a City" aria-label="enter a city name" aria-describedby="search button">
+
+                                        <div class="input-group-append search">
+                                            <button class="btn btn-outline-secondary" type="button" id="search-button">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-dark" id="searched-cities" style="width: 100%;">
+                                <div class="card-header">Searched Cities</div>
+                                <div class="card-body text-dark">
+                                    <div class="list-group list-group-flush" id="searched-cities-button">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8" id="weatherDisplay">
+                        <div class="row">
+                            <div class="card border-dark" style="width:100%;">
+                                <div class="card-header" id="city-date">
+                                    <div class="spinner-border float-right" role="status"></div>
+                                </div>
+                                <div class="card-body text-dark">
+                                    <div class="row">
+                                        <div class="col-4" id="weather-symbol">
+
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="row" id="temperature">
+
+                                            </div>
+                                            <div class="row" id="humidity">
+
+                                            </div>
+                                            <div class="row" id="wind">
+
+                                            </div>
+                                            <div class="row">
+                                                <h5><span class="badge badge-pill align-middle" id="uvi"></span></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="text-center hide" id="display-forecast">
+                                                <div class="spiunner-border spinner-border-sm" role="status"></div>
+                                            </div>
+                                            <div class="text-center" id="forecast-time">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-dark" style="width: 100%;">
+                                <div class="card-header">Weekly Forecast</div>
+                                <div class="card-body card5day-body text-dark">
+                                    <div class="row justify-content-center" id="forecast-5day-container">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+       
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data-10-year-range.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</html>
