@@ -50,10 +50,15 @@ function presentWeather() {
         method: 'GET',
         url: fullURL
     }).then(function(input) {
-        $('.cityName').text(response.name);
+        $('.cityName').text(input.name);
         $('.data').text(date);
 
-        $('.icons')
+        $('.icons').attr('src', `https://openweather.org/img/wn/${input.weather[0].icon}@2x.png`)
+
+        var temp = $('<p>').text(`Temperature: ${input.main.temp} °F`);
+        var whatItFeelsLike = $('<p>').text(`Feels like: ${input.main.feel_like} °F`);
+        var humidity = $('<p>').text(`Humidity: ${input.main.humidity} %`);
+        cardContent.append(temp);
     })
 }
 // var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
