@@ -70,7 +70,45 @@ function presentWeather() {
         cardContent.append(humidity);
 
         //todo dd url for lat and long (?)
+
+        // $.ajax({
+        //     method: 'GET',
+        //     url: urlLocation
+        // }).then(function(response) {
+        //     var UV = $('<p>').text(`UV Index: ${input.current.uvi}`);
+        //     var UVI = input.current.uvi;
+            
+        // })
         
+        // var urlLocation = `https://api.openweathermap.org/data/2.5/onecall?late=${latitude}&lon=${longitude}&exclude=hourly,daily,minutely&appid=${apiKey}`;
+
+    })
+    forecastDisplay();
+}
+
+var forecast = $('.forecastDisplay');
+function forecastDisplay() {
+    var urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`;
+
+    $.ajax({
+        method: 'GET',
+        url: urlForecast
+    }).then(function (input) {
+        var cardArray = input.list;
+        var allWeather = [];
+        $.each.cardArray, function (index, value) {
+            testObj = {
+                date: value.dt_txt.split(' ')[0],
+                time: value.dt_txt.split(' ')[1],
+                feel_like: value.main.feels_like,
+                temp: value.main.temp,
+                humidity: value.main.humidity,
+                icon: value.weather[0].icon
+            }
+            if (value.dt_txt.split(' ')[1] === "12:00:00") {
+                allWeather.push(testObj);
+            }
+        }
     })
 }
 // var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
