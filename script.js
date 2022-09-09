@@ -59,7 +59,7 @@ function presentWeather() {
         var latitude = $('<p>').text(`Latitude: ${input.coord.lat}`);
         var temp = $('<p>').text(`Temperature: ${input.main.temp} °F`);
         var wind = $('<p>').text(`Wind Speed: ${input.main.wind.speed} mph`)
-        var whatItFeelsLike = $('<p>').text(`Feels like: ${input.main.feel_like} °F`);
+        var whatItFeelsLike = $('<p>').text(`Feels like: ${input.main.feels_like} °F`);
         var humidity = $('<p>').text(`Humidity: ${input.main.humidity} %`);
         
         cardContent.append(longitude);
@@ -105,84 +105,50 @@ function forecastDisplay() {
                 humidity: value.main.humidity,
                 icon: value.weather[0].icon
             }
+        }
             if (value.dt_txt.split(' ')[1] === "12:00:00") {
                 allWeather.push(testObj);
             }
-        }
-    })
-}
-// var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
-// var weatherIconsUrl = 'http://openweathermap.org/img/wn/'
-// var callUrl = 'https://api.openweathermap.org/data/2.5/onecall?at='
-
-
-
-// function getWeather(city){
-//     var weatherApiUrl = weatherUrl + city + '&appid=' + apiKey;
-
-//     fetch(weatherApiUrl).then(function (geoLocation) {
-//         if (geoLocation.ok){
-//             geoLocation.json().then(function (data){
-//                 var latitude = data.coord.lat;
-//                 var longitude = data.coord.lon;
-
-//                 var callApiUrl = callUrl + latitude + longitude + '&appid=' + apiKey + '&units=imperial';
-
-//                 fetch(callApiUrl).then(function (weatherData){
-//                     if(weatherData.ok) {
-//                         weatherData.json().then(function(weatherData){
-//                             var presentWeatherEl = $('<div>').attr({id: 'present-weather'})
-//                         })
-//                         var weatherSymbol = weatherData.curren.weather[0].icon;
-//                         var presentWeatherIcon = weatherIconsUrl + weatherSymbol + '.png';
-
-//                         var boxHeading = $('<h2>').text(city + '('+ currentDay + ')')
-
-//                         var iconImage = $('<img>').attr({
-//                             id: 'present-weather-icon',
-//                             src: presentWeatherIcon,
-//                             alt: 'Displays Weather Symbols'
-//                         })
-
-//                         var presentWeatherListEl = $('<ul>')
-//                         var weatherFactors = ['Temp: ' + weatherData.current.temp + ' F', 'Wind ']
-//                     }
-//                 })
-//             }
-//         });
-// }
-
-// function searchHistory (city){
-
-//     var displayPastSearch = $('<button>'),addClass('btn').text(city).on('click', function(){
-//         $('#current-weather').remove();
-//         $('#five-days-title').remove();
-//         $("five-days").empty();
-//         displayWeather(city);
-//     })
-//     .attr({
-//         type: 'button'
-//     });
-
-//     userSearchEl.append(displayPastSearch);
-
-// }
-
-// function pastSearches() { 
-//     var storedCities = JSON.parse(localStorage.getItem('search history'));
-    
-//     if (!storedCities) { 
-//         storedCities = {
-//             citySearch: []
         
-//         };
-// } else  {
-//     for (var i=0; i< pastSearches.searchedCity.length; i++){
-//         searchHistory(storedCities.citySearch[i]);
-//     }
-// }
+    })
 
-// return storedCities;
+    for (var i=0; i <allWeather.length; i++) {
+        var cardDim = $('<div');
+        var header = $('<div>');
+        var body = $('<div>');
+        var icons = $('<img>');
+        var tempEl = $('<p>').text(`Temperature: ${input.main.temp} °F`);;
+        var humidEl = $('<p>').text(`Humidity: ${input.main.humidity} %`);
+        var feelsLikeEl = $('<p>').text(`Feels like: ${input.main.feels_like} °F`);
 
-// } console.log(storedCities);
 
+        cardDim.attr('class', 'card text-white bg-primary mb-3 first');
+        cardDim.attr('style', 'max-width: 200px;');
+        header.attr('class', 'card-head')
+        // header.attr('style', )
+        icons.attr('class', 'icon');
+        icons.attr('src', `https://openweathermap.org/img/wn/${allWeather[i].icon}@2x.png`);
+        body.append(icons);
+        body.attr('class', 'card-body');
+        body.append(body);
+        body.append(tempEl);
+        body.append(humidEl);
+        body.append(feelsLikeEl);   
+        
+        forecast.append(cardDim);
+        
+    };
+};
+
+function start(){
+
+    var storage = JSON.parse(localStorage.getItem('city'));
+    if(storage !== null) {
+        cityHist = storage
+    }
+    pastCities();
+    presentWeather();
+
+}
+
+start();
