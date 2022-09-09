@@ -11,11 +11,30 @@ $('.search').on("click", function(event) {
     };
     pastSearches.push(city);
     //localStorage
-    //empty
-    //history
-    //weathertoday
+    localStorage.setItem('city'. JSON.stringify(cityHist));
+    forecastDisplay.empty();
+    pastCities();
+    presentWeather();
+});
 
-})
+var history = $('.history');
+function historySect(){
+    history.empty();
+
+    for(let i = 0; i< history.length; i++){
+        var row = $('<row>');
+        row.addClass('row historyRow');
+        history.preprend(row);
+
+        var historyBtn = $('<button>').text(`${history[i]}`);
+        historyBtn.addClass('btn historyButton');
+        historyBtn.attr('type', 'button');
+        row.append(hisotryBtn)
+
+
+        
+    }
+}
 // var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
 // var weatherIconsUrl = 'http://openweathermap.org/img/wn/'
 // var callUrl = 'https://api.openweathermap.org/data/2.5/onecall?at='
