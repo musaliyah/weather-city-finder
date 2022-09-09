@@ -29,11 +29,32 @@ function historySect(){
         var historyBtn = $('<button>').text(`${history[i]}`);
         historyBtn.addClass('btn historyButton');
         historyBtn.attr('type', 'button');
-        row.append(hisotryBtn)
-
-
-        
+        row.append(hisotryBtn)        
+    } if (!city) {
+        return;
     }
+    $('.historyButton').on("click", function (event) {
+        event.preventDefault();
+        city = $(this).text();
+        forecastDisplay.empty();
+        presentWeather();
+    });
+};
+
+var weatherCards =  $('.weatherCards')
+function presentWeather() {
+    var fullURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+    $(cardContent).empty();
+
+    $.ajax({
+        method: 'GET',
+        url: fullURL
+    }).then(function(input) {
+        $('.cityName').text(response.name);
+        $('.data').text(date);
+
+        $('.icons')
+    })
 }
 // var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
 // var weatherIconsUrl = 'http://openweathermap.org/img/wn/'
