@@ -55,10 +55,22 @@ function presentWeather() {
 
         $('.icons').attr('src', `https://openweather.org/img/wn/${input.weather[0].icon}@2x.png`)
 
+        var longitude = $('<p>').text(`Longtude: ${input.coord.lon}`);
+        var latitude = $('<p>').text(`Latitude: ${input.coord.lat}`);
         var temp = $('<p>').text(`Temperature: ${input.main.temp} °F`);
+        var wind = $('<p>').text(`Wind Speed: ${input.main.wind.speed} mph`)
         var whatItFeelsLike = $('<p>').text(`Feels like: ${input.main.feel_like} °F`);
         var humidity = $('<p>').text(`Humidity: ${input.main.humidity} %`);
+        
+        cardContent.append(longitude);
+        cardContent.append(latitude);
         cardContent.append(temp);
+        cardContent.append(wind);
+        cardContent.append(whatItFeelsLike);
+        cardContent.append(humidity);
+
+        //todo dd url for lat and long (?)
+        
     })
 }
 // var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
