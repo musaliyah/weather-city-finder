@@ -1,7 +1,8 @@
+
 var apiKey ='7b0cb6b05833e4f392297ec0ca158aea';
 var date = moment().format('MMMM Do YYYY, h:mm:ss a')
 var city = "Kochi"
-var pastSearches = [];
+var cityHist = [];
 
 $('.search').on("click", function(event) {
     event.preventDefault();
@@ -9,7 +10,7 @@ $('.search').on("click", function(event) {
     if (cityInput === "") {
         return;
     };
-    pastSearches.push(city);
+    cityHis.push(city);
     //localStorage
     localStorage.setItem('city'. JSON.stringify(cityHist));
     forecastDisplay.empty();
@@ -17,16 +18,16 @@ $('.search').on("click", function(event) {
     presentWeather();
 });
 
-var history = $('.history');
-function historySect(){
-    history.empty();
+var contHistEl = $('.cityHist');
+function pastCities() {
+    // contHistEl.empty();
 
-    for(let i = 0; i< history.length; i++){
+    for(let i = 0; i< cityHist.length; i++){
         var row = $('<row>');
         row.addClass('row historyRow');
-        history.preprend(row);
+        contHistEl.preprend(row);
 
-        var historyBtn = $('<button>').text(`${history[i]}`);
+        var historyBtn = $('<button>').text(`${cityHist[i]}`);
         historyBtn.addClass('btn historyButton');
         historyBtn.attr('type', 'button');
         row.append(hisotryBtn)        
@@ -41,7 +42,7 @@ function historySect(){
     });
 };
 
-var weatherCards =  $('.weatherCards')
+var cardContent =  $('.cardContent')
 function presentWeather() {
     var fullURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
     $(cardContent).empty();
@@ -117,15 +118,17 @@ function forecastDisplay() {
         var header = $('<div>');
         var body = $('<div>');
         var icons = $('<img>');
-        var tempEl = $('<p>').text(`Temperature: ${input.main.temp} °F`);;
-        var humidEl = $('<p>').text(`Humidity: ${input.main.humidity} %`);
-        var feelsLikeEl = $('<p>').text(`Feels like: ${input.main.feels_like} °F`);
+        var tempEl = $('<p>').text(`Temperature: ${allWeather[i].temp} °F`);;
+        var humidEl = $('<p>').text(`Humidity: ${allWeather[i].humidity} %`);
+        var feelsLikeEl = $('<p>').text(`Feels like: ${allWeather[i].feels_like} °F`);
 
 
         cardDim.attr('class', 'card text-white bg-primary mb-3 first');
         cardDim.attr('style', 'max-width: 200px;');
         header.attr('class', 'card-head')
-        // header.attr('style', )
+        var momemt = momemt(`${allWeather[i].date}`).format('MM-DD-YYYY');
+        header.text(m)
+        cardDim.append(header)
         icons.attr('class', 'icon');
         icons.attr('src', `https://openweathermap.org/img/wn/${allWeather[i].icon}@2x.png`);
         body.append(icons);

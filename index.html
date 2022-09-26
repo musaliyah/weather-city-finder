@@ -17,93 +17,51 @@
             <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
         </nav>
 
-        <main>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="search-bar">
-                            <div class="card border-dark" style="width: 100%;">
-                                <div class="card-header">Search Cities:</div>
-                                <div class="card-body text-dark">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Enter a City" aria-label="enter a city name" aria-describedby="search button">
-
-                                        <div class="input-group-append search">
-                                            <button class="btn btn-outline-secondary" type="button" id="search-button">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="card border-dark" id="searched-cities" style="width: 100%;">
-                                <div class="card-header">Searched Cities</div>
-                                <div class="card-body text-dark">
-                                    <div class="list-group list-group-flush" id="searched-cities-button">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8" id="weather-forecast">
-                        <div class="row">
-                            <div class="card border-dark" style="width:100%;">
-                                <div class="card-header" id="city-date">
-                                    <div class="spinner-border float-right" role="status"></div>
-                                </div>
-                                <div class="card-body text-dark">
-                                    <div class="row">
-                                        <div class="col-4" id="weather-symbol">
-
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="row" id="temperature">
-
-                                            </div>
-                                            <div class="row" id="humidity">
-
-                                            </div>
-                                            <div class="row" id="wind">
-
-                                            </div>
-                                            <div class="row">
-                                                <h5><span class="badge badge-pill align-middle" id="uvi"></span></h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="text-center hide" id="display-forecast">
-                                                <div class="spiunner-border spinner-border-sm" role="status"></div>
-                                            </div>
-                                            <div class="text-center" id="forecast-time">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="card border-dark" style="width: 100%;">
-                                <div class="card-header">Weekly Forecast</div>
-                                <div class="card-body card5day-body text-dark">
-                                    <div class="row justify-content-center" id="forecast-5day-container">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class = "container-fluid">
+        <div class="row">
+            <div class="col-lg-3 bg-dark">
+                <h4 class="mt-1">Search for a City:</h4>
+                <div class="input-group mb-3">
+                <input id="enter-city" type="text" class="form-control" placeholder="Enter a city">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
-
             </div>
-        </main>
-       
+            <button class="btn btn-primary mb-3" type="button" id="clear-history">Clear history</button>
+            <form id="history"></form>
+        </div>
+        <div class="col-lg-9">
+            <div class="row mr-0"></div>
+                <div class="col-lg-11 card m-3 d-none" id="today-weather">
+                    <div class="card-body"></div>
+                    <h3 id="city-name" class="city-name align-middle"></h3>
+                    <img id="current-pic" alt="">
+                    <p id="temperature"></p>
+                    <p id="humidity"></p>
+                    <p id="wind-speed"></p>
+                    <p id="UV-index"></p>
+                </div>
+        </div>
+    </div>
+    <div class="row d-none" id="fiveday-header">
+        <div class="col-12">
+            <h3>5-Day Forecast</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+        <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+        <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+        <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+        <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+    </div>
+    </div>
+</div>
+</div>
     </body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data-10-year-range.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
