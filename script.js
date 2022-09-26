@@ -7,6 +7,10 @@ var searchBtn = $('#search-button');
 
 var cityInput = 'kochi';
 
+function app(data){
+
+    var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.lat}&lon=${data.lon}&exclude=minutely,hourly,alerts&units=metric&appid=${APIkey}`
+}
 // $('.search').on("click", function(event) {
 //     event.preventDefault();
 //     cityInput = $(this).parent('.srchBtn').siblings('.textVal').val().trim();
