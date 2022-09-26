@@ -10,6 +10,16 @@ var cityInput = 'kochi';
 function app(data){
 
     var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.lat}&lon=${data.lon}&exclude=minutely,hourly,alerts&units=metric&appid=${APIkey}`
+    
+    fetch(apiUrl)
+    .then(function(answer) {
+        return answer.json();
+    })
+    .then(function(data){
+
+        var weatherEl = $('#weather');
+        weatherEl.addClass('border border-primary');
+    }) 
 }
 // $('.search').on("click", function(event) {
 //     event.preventDefault();
